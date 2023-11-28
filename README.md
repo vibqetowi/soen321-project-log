@@ -35,7 +35,7 @@
 
 ## MyPossibleSelf
 - Static analysis gave a terrible score of 30 and found 7 trackers, it brought up many dangerous permissions that the app used and had a severe network security issue where the domain allowed clear text traffic to sane.org.uk
-- 
+- Burp Suite showed a high number of calls to graph.facebook for data collection, but otherise only called firebase to double check installations and perform startup for backend connections and used vimeo to grab videos to present in the app.
 
 ## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid)
 
