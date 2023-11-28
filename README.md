@@ -14,10 +14,11 @@
     - 
 - Burp Suite:
     - this app sends verything including password in plaintext during registration 
-![Alt text](image.png)
+    ![Alt text](/images/image.png)
 ## ???
-- using Burp Suite, we found this app sends chat queries and responses in plaintext
-![Alt text](image-1.png)
+- Burp Suite:
+    -  this app sends chat queries and responses in plaintext
+    ![Alt text](/images/image-1.png)
 # Dismissed:
 - LoveGPT
     - Reason: need Google account
