@@ -5,6 +5,7 @@
 - [AI Girlfriend](https://play.google.com/store/apps/details?id=ai.girlfriend)
 - [AI Anna](https://play.google.com/store/apps/details?id=com.aigirlfriend.anna)
 
+
 # Dismissed Apps
 - [LoveGPT](https://play.google.com/store/apps/details?id=com.kodrak.aidreamgirls)
   - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
@@ -13,6 +14,9 @@
 ## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
 ## [iGirl](https://play.google.com/store/apps/details?id=ai.girlfriend.virtual.dating.lover.igirl)
 ## [HER ai](https://play.google.com/store/apps/details?id=com.herchatgpt.herchatgpt)
+## [Audyn AI](https://play.google.com/store/apps/details?id=com.cognital.audyn&hl=en&gl=US)
+## [MyPossibleSelf](https://play.google.com/store/apps/details?id=com.mypossibleself.app&hl=en&gl=US)
+## [Breeze: Mental Health](https://play.google.com/store/apps/details?id=com.basenjiapps.breeze&hl=en&gl=US)
 
 ### General Observations
 - It seems to process on the device as chatting generates no Burp traffic.
