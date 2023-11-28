@@ -9,6 +9,8 @@
 # Dismissed Apps
 - [LoveGPT](https://play.google.com/store/apps/details?id=com.kodrak.aidreamgirls)
   - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
+-[Wysa](https://play.google.com/store/apps/details?id=bot.touchkin&hl=en&gl=US)
+  - Reason: Attampts to connect to google playstore constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
 
 # Working Apps
 ## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
@@ -17,6 +19,9 @@
 ## [Audyn AI](https://play.google.com/store/apps/details?id=com.cognital.audyn&hl=en&gl=US)
 ## [MyPossibleSelf](https://play.google.com/store/apps/details?id=com.mypossibleself.app&hl=en&gl=US)
 ## [Breeze: Mental Health](https://play.google.com/store/apps/details?id=com.basenjiapps.breeze&hl=en&gl=US)
+## [Moodfit](https://play.google.com/store/apps/details?id=com.robleridge.Moodfit&hl=en&gl=US)
+## [BetterHelp](https://play.google.com/store/apps/details?id=com.betterhelp&hl=en&gl=US)
+
 
 ### General Observations
 - It seems to process on the device as chatting generates no Burp traffic.
