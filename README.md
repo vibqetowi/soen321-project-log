@@ -37,6 +37,14 @@
 - Static analysis gave a terrible score of 30 and found 7 trackers, it brought up many dangerous permissions that the app used and had a severe network security issue where the domain allowed clear text traffic to sane.org.uk
 - Burp Suite showed a high number of calls to graph.facebook for data collection, but otherise only called firebase to double check installations and perform startup for backend connections and used vimeo to grab videos to present in the app.
 
+## Breeze
+- Static analysis gave a very bad score of 39 and found 7 trackers, the most alraming finding was found in the manifest analysis where along with many shared activities between applications, it was found that clear text traffic was enabled for the app, which is very bad for security. It also found many issues with the brodcast receiver and found coding issues with its hashes and random number generator which were not strong enough accoridng to mobsf's analysis.
+- Burp Suite found calls to graphs.facebook, startup.mobile.yandex.net, sso.basenjiapps.com (owned by developer), cdn.jsdelivr.net, cloudfare.com and many others, making a large number of connections to many different areas is quite concerning, though most of these calls were during the sign up process, only the free version of the application was ran through.
+
+## Moodfit
+- Static Analysis gave a very low score of 37 and found 4 trackers, a decent number of permissions were not protected with others needing checks to their permissions to ensure secutiry, this application also allows clear text traffic which is quite worrying.
+- Burp Suite found that the only https calls that were made were to firebase or to dschloss.net, a site thought to be run by the devoloper but still unclear, it seems to be the main backend for the site and takes down info relating to what the user gives as input.
+
 ## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid)
 
 
