@@ -1,20 +1,25 @@
 # Writeups for our Android app analysis for SOEN 321 
 
-# Not Working
-- Dream AI
-- AI Girlfriend
-- AI Anna
+# Broken Apps
+- [Dream AI](https://play.google.com/store/apps/details?id=com.dreamai.virtual.girlfriend)
+- [AI Girlfriend](https://play.google.com/store/apps/details?id=ai.girlfriend)
+- [AI Anna](https://play.google.com/store/apps/details?id=com.aigirlfriend.anna)
 
-# Working
-## EVA AAI
-## iGirl
-## HER ai
+# Dismissed Apps
+- [LoveGPT](https://play.google.com/store/apps/details?id=com.kodrak.aidreamgirls)
+  - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
+
+# Working Apps
+## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
+## [iGirl](https://play.google.com/store/apps/details?id=ai.girlfriend.virtual.dating.lover.igirl)
+## [HER ai](https://play.google.com/store/apps/details?id=com.herchatgpt.herchatgpt)
 
 ### General Observations
 - It seems to process on the device as chatting generates no Burp traffic.
 - Interesting behavior: it completely refuses naughty talks instead of prompting you to pay like most apps.
 
-## SuperBetter
+## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid)
+
 
 ### VirusTotal
 - Every security vendor returns clean except one; this could be a false positive ![Alt text](images/image-2.png)
@@ -27,9 +32,7 @@
 ### Burp Suite
 - This app sends chat queries and responses in plaintext ![Alt text](/images/image-1.png)
 
-# Dismissed
-- LoveGPT
-  - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
+
 
 ---
 
@@ -37,7 +40,7 @@
 
 ## Burp Suite
 
-- Working on Pixel 7 Pro and API 30: [Setup Guide](https://blog.yarsalabs.com/setting-up-burp-for-android-application-testing/)
+- Working on Pixel 7 Pro and API 30: [Setup Guide](/)
 - Working on Pixel 2XL API 28: [Setup Guide](https://archive.is/dUpPZ)
 
 ## MobSF 
