@@ -49,6 +49,9 @@
 - Static Analysis gave a low score of 34 and found 3 trackers, this app had a high number of unprotected activites found during the manifest analysis, most related to the video feature. It also discloses IP addresses and has permission issues relating to bluetooth settings.
 - Burp Suite found that it calls almost exclusively to a website titled static.betterhelp.com which is presumably owned by the app developer given the shared name, although these calls include very high amounts of data being sent to this website which caused the data records to baloon to much larger sizes then the other apps.
 
+## Wysa
+- This app could only be tested via static analysis, it gave a score of 42 and found 3 trackers, its calls are qite standard overall having many of the same common issues as the other apps but to a slightly lesser degree.
+
 ## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid)
 
 
