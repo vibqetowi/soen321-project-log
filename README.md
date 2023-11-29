@@ -10,7 +10,9 @@
 - [LoveGPT](https://play.google.com/store/apps/details?id=com.kodrak.aidreamgirls)
   - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
 - [Wysa](https://play.google.com/store/apps/details?id=bot.touchkin&hl=en&gl=US)
-  - Reason: Attampts to connect to google playstore constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
+  - Reason: Attempts to connect to Google Play Store constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
+- [Nex Romance Girlfriend Ai Chat] ([https://nex-romance.en.aptoide.com/app]).
+  - Reason: It doesn't work at all, the app disappears right away.
 
 # Working Apps
 ## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
