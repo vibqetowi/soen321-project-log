@@ -23,6 +23,7 @@
 ## [Breeze: Mental Health](https://play.google.com/store/apps/details?id=com.basenjiapps.breeze&hl=en&gl=US)
 ## [Moodfit](https://play.google.com/store/apps/details?id=com.robleridge.Moodfit&hl=en&gl=US)
 ## [BetterHelp](https://play.google.com/store/apps/details?id=com.betterhelp&hl=en&gl=US)
+## [Anima: AI Friend & Companion](https://anima-anima-tech-inc.en.aptoide.com/app)
 
 
 
