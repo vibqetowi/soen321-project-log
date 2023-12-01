@@ -10,7 +10,9 @@
 - [LoveGPT](https://play.google.com/store/apps/details?id=com.kodrak.aidreamgirls)
   - Reason: It requires a Google account, which needs a phone number, and we refuse to use our own as Google can detect fakes.
 - [Wysa](https://play.google.com/store/apps/details?id=bot.touchkin&hl=en&gl=US)
-  - Reason: Attampts to connect to google playstore constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
+  - Reason: Attempts to connect to Google Play Store constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
+- [Nex Romance](https://nex-romance.en.aptoide.com/app)
+  - Reason: It doesn't work at all, the app disappears right away.
 
 # Working Apps
 ## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app)
@@ -24,6 +26,7 @@
 ## [Breeze: Mental Health](https://play.google.com/store/apps/details?id=com.basenjiapps.breeze&hl=en&gl=US)
 ## [Moodfit](https://play.google.com/store/apps/details?id=com.robleridge.Moodfit&hl=en&gl=US)
 ## [BetterHelp](https://play.google.com/store/apps/details?id=com.betterhelp&hl=en&gl=US)
+## [Anima: AI Friend & Companion](https://anima-anima-tech-inc.en.aptoide.com/app)
 
 ### Static Analysis:
  gave a low score of 34 and found 3 trackers, this app had a high number of unprotected activites found during the manifest analysis, most related to the video feature. It also discloses IP addresses and has permission issues relating to bluetooth settings.
