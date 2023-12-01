@@ -13,6 +13,9 @@
   - Reason: Attampts to connect to google playstore constantly, can't run with current emulator setup, will still attempt static analysis using mobsf though.
 
 # Working Apps
+## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app)
+### Static Analysis: 
+- Virus total returns clean on every vendor
 ## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
 ## [iGirl](https://play.google.com/store/apps/details?id=ai.girlfriend.virtual.dating.lover.igirl)
 ## [HER ai](https://play.google.com/store/apps/details?id=com.herchatgpt.herchatgpt)
@@ -22,6 +25,10 @@
 ## [Moodfit](https://play.google.com/store/apps/details?id=com.robleridge.Moodfit&hl=en&gl=US)
 ## [BetterHelp](https://play.google.com/store/apps/details?id=com.betterhelp&hl=en&gl=US)
 
+### Static Analysis:
+ gave a low score of 34 and found 3 trackers, this app had a high number of unprotected activites found during the manifest analysis, most related to the video feature. It also discloses IP addresses and has permission issues relating to bluetooth settings.
+### Burp Suite:
+ found that it calls almost exclusively to a website titled static.betterhelp.com which is presumably owned by the app developer given the shared name, although these calls include very high amounts of data being sent to this website which caused the data records to baloon to much larger sizes then the other apps.
 
 
 ### General Observations
@@ -45,9 +52,6 @@
 - Static Analysis gave a very low score of 37 and found 4 trackers, a decent number of permissions were not protected with others needing checks to their permissions to ensure secutiry, this application also allows clear text traffic which is quite worrying.
 - Burp Suite found that the only https calls that were made were to firebase or to dschloss.net, a site thought to be run by the devoloper but still unclear, it seems to be the main backend for the site and takes down info relating to what the user gives as input.
 
-## Better Help
-- Static Analysis gave a low score of 34 and found 3 trackers, this app had a high number of unprotected activites found during the manifest analysis, most related to the video feature. It also discloses IP addresses and has permission issues relating to bluetooth settings.
-- Burp Suite found that it calls almost exclusively to a website titled static.betterhelp.com which is presumably owned by the app developer given the shared name, although these calls include very high amounts of data being sent to this website which caused the data records to baloon to much larger sizes then the other apps.
 
 ## Wysa
 - This app could only be tested via static analysis, it gave a score of 42 and found 3 trackers, its calls are qite standard overall having many of the same common issues as the other apps but to a slightly lesser degree.
