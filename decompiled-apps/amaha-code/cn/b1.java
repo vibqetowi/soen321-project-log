@@ -1,0 +1,109 @@
+package cn;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import com.theinnerhour.b2b.components.libraryExperiment.model.LibraryCollection;
+import java.util.ArrayList;
+import java.util.List;
+/* compiled from: SafeCollector.common.kt */
+/* loaded from: classes2.dex */
+public final class b1 implements kotlinx.coroutines.flow.d<List<? extends LibraryCollection>> {
+
+    /* renamed from: u  reason: collision with root package name */
+    public final /* synthetic */ kotlinx.coroutines.flow.d f5420u;
+
+    /* compiled from: Emitters.kt */
+    /* loaded from: classes2.dex */
+    public static final class a<T> implements kotlinx.coroutines.flow.e {
+
+        /* renamed from: u  reason: collision with root package name */
+        public final /* synthetic */ kotlinx.coroutines.flow.e f5421u;
+
+        /* compiled from: Emitters.kt */
+        @ns.e(c = "com.theinnerhour.b2b.components.libraryExperiment.viewmodel.LibraryViewModelRepository$fetchCollection$$inlined$map$1$2", f = "LibraryViewModelRepository.kt", l = {223}, m = "emit")
+        /* renamed from: cn.b1$a$a  reason: collision with other inner class name */
+        /* loaded from: classes2.dex */
+        public static final class C0112a extends ns.c {
+
+            /* renamed from: u  reason: collision with root package name */
+            public /* synthetic */ Object f5422u;
+
+            /* renamed from: v  reason: collision with root package name */
+            public int f5423v;
+
+            public C0112a(ls.d dVar) {
+                super(dVar);
+            }
+
+            @Override // ns.a
+            public final Object invokeSuspend(Object obj) {
+                this.f5422u = obj;
+                this.f5423v |= LinearLayoutManager.INVALID_OFFSET;
+                return a.this.b(null, this);
+            }
+        }
+
+        public a(kotlinx.coroutines.flow.e eVar) {
+            this.f5421u = eVar;
+        }
+
+        /* JADX WARN: Removed duplicated region for block: B:10:0x0021  */
+        /* JADX WARN: Removed duplicated region for block: B:14:0x002f  */
+        @Override // kotlinx.coroutines.flow.e
+        /*
+            Code decompiled incorrectly, please refer to instructions dump.
+        */
+        public final Object b(Object obj, ls.d dVar) {
+            C0112a c0112a;
+            int i6;
+            if (dVar instanceof C0112a) {
+                c0112a = (C0112a) dVar;
+                int i10 = c0112a.f5423v;
+                if ((i10 & LinearLayoutManager.INVALID_OFFSET) != 0) {
+                    c0112a.f5423v = i10 - LinearLayoutManager.INVALID_OFFSET;
+                    Object obj2 = c0112a.f5422u;
+                    ms.a aVar = ms.a.COROUTINE_SUSPENDED;
+                    i6 = c0112a.f5423v;
+                    if (i6 == 0) {
+                        if (i6 == 1) {
+                            sp.b.d0(obj2);
+                        } else {
+                            throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                        }
+                    } else {
+                        sp.b.d0(obj2);
+                        List<fe.g> list = (List) obj;
+                        ArrayList arrayList = new ArrayList(is.i.H1(list, 10));
+                        for (fe.g gVar : list) {
+                            arrayList.add((LibraryCollection) gVar.d(LibraryCollection.class));
+                        }
+                        c0112a.f5423v = 1;
+                        if (this.f5421u.b(arrayList, c0112a) == aVar) {
+                            return aVar;
+                        }
+                    }
+                    return hs.k.f19476a;
+                }
+            }
+            c0112a = new C0112a(dVar);
+            Object obj22 = c0112a.f5422u;
+            ms.a aVar2 = ms.a.COROUTINE_SUSPENDED;
+            i6 = c0112a.f5423v;
+            if (i6 == 0) {
+            }
+            return hs.k.f19476a;
+        }
+    }
+
+    public b1(kotlinx.coroutines.flow.r rVar) {
+        this.f5420u = rVar;
+    }
+
+    @Override // kotlinx.coroutines.flow.d
+    public final Object a(kotlinx.coroutines.flow.e<? super List<? extends LibraryCollection>> eVar, ls.d dVar) {
+        Object a10 = this.f5420u.a(new a(eVar), dVar);
+        if (a10 == ms.a.COROUTINE_SUSPENDED) {
+            return a10;
+        }
+        return hs.k.f19476a;
+    }
+}

@@ -1,0 +1,83 @@
+package rm;
+
+import android.app.Dialog;
+import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import com.theinnerhour.b2b.R;
+import com.theinnerhour.b2b.components.journal.model.JournalModel;
+import com.theinnerhour.b2b.utils.LogHelper;
+import com.theinnerhour.b2b.utils.UiUtils;
+import com.theinnerhour.b2b.utils.Utils;
+import ik.l1;
+import pl.w0;
+/* compiled from: JournalTodayQuestionFragment.kt */
+/* loaded from: classes2.dex */
+public final class f extends kotlin.jvm.internal.k implements ss.l<Integer, hs.k> {
+
+    /* renamed from: u  reason: collision with root package name */
+    public final /* synthetic */ h f30798u;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public f(h hVar) {
+        super(1);
+        this.f30798u = hVar;
+    }
+
+    @Override // ss.l
+    public final hs.k invoke(Integer num) {
+        String str;
+        int intValue = num.intValue();
+        Utils utils = Utils.INSTANCE;
+        h hVar = this.f30798u;
+        if (utils.checkConnectivity(hVar.requireActivity())) {
+            String str2 = gk.a.f16573a;
+            Bundle bundle = new Bundle();
+            int i6 = h.N;
+            bundle.putString("template", hVar.O().A.b());
+            WindowManager.LayoutParams layoutParams = null;
+            if (hVar.O().H && hVar.O().J != null) {
+                JournalModel journalModel = hVar.O().J;
+                if (journalModel != null) {
+                    str = journalModel.getId();
+                } else {
+                    str = null;
+                }
+            } else {
+                str = "fresh_entry";
+            }
+            bundle.putString("entry_id", str);
+            hs.k kVar = hs.k.f19476a;
+            gk.a.b(bundle, "journal_image_remove_click");
+            try {
+                Dialog styledDialog = UiUtils.Companion.getStyledDialog(R.layout.dialog_journal_save_popup, hVar.requireActivity(), R.style.Theme_Dialog);
+                Window window = styledDialog.getWindow();
+                if (window != null) {
+                    layoutParams = window.getAttributes();
+                }
+                if (layoutParams != null) {
+                    layoutParams.windowAnimations = R.style.DialogGrowInAndShrinkOut;
+                }
+                TextView textView = (TextView) styledDialog.findViewById(R.id.tvJournalDialogTitle);
+                if (textView != null) {
+                    textView.setText(hVar.getString(R.string.journalImageRemoveDialogHeader));
+                }
+                TextView textView2 = (TextView) styledDialog.findViewById(R.id.tvJournalDialogMessage);
+                if (textView2 != null) {
+                    textView2.setVisibility(8);
+                }
+                TextView textView3 = (TextView) styledDialog.findViewById(R.id.tvJournalDialogCancel);
+                textView3.setText(hVar.getString(R.string.no_cancel));
+                textView3.setOnClickListener(new w0(styledDialog, 9, hVar));
+                ((ConstraintLayout) styledDialog.findViewById(R.id.clJournalDialogYes)).setOnClickListener(new l1(hVar, intValue, styledDialog, 17));
+                ((TextView) styledDialog.findViewById(R.id.tvJournalDialogYes)).setText(hVar.getString(R.string.yes_remove));
+                styledDialog.show();
+            } catch (Exception e10) {
+                LogHelper.INSTANCE.e(hVar.f30800v, e10);
+            }
+        }
+        return hs.k.f19476a;
+    }
+}

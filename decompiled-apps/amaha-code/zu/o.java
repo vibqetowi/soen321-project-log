@@ -1,0 +1,6 @@
+package zu;
+/* compiled from: TypeSystemContext.kt */
+/* loaded from: classes2.dex */
+public interface o {
+    boolean t(i iVar, i iVar2);
+}

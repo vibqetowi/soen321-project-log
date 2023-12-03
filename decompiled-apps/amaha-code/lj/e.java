@@ -1,0 +1,19 @@
+package lj;
+/* compiled from: Parser.kt */
+/* loaded from: classes.dex */
+public final class e extends kotlin.jvm.internal.k implements ss.a<String> {
+
+    /* renamed from: u  reason: collision with root package name */
+    public final /* synthetic */ h f24387u;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public e(h hVar) {
+        super(0);
+        this.f24387u = hVar;
+    }
+
+    @Override // ss.a
+    public final String invoke() {
+        return kotlin.jvm.internal.i.n(" buttonFromJson() : ", this.f24387u.f24391b);
+    }
+}

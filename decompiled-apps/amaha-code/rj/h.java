@@ -1,0 +1,21 @@
+package rj;
+
+import com.moengage.pushbase.push.PushMessageListener;
+/* compiled from: PushMessageListener.kt */
+/* loaded from: classes.dex */
+public final class h extends kotlin.jvm.internal.k implements ss.a<String> {
+
+    /* renamed from: u  reason: collision with root package name */
+    public final /* synthetic */ PushMessageListener f30748u;
+
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public h(PushMessageListener pushMessageListener) {
+        super(0);
+        this.f30748u = pushMessageListener;
+    }
+
+    @Override // ss.a
+    public final String invoke() {
+        return kotlin.jvm.internal.i.n(" onMessageReceived() : Campaign need not be shown in notification drawer. Will be saved in inbox.", this.f30748u.f10236a);
+    }
+}

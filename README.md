@@ -15,6 +15,35 @@
   - Reason: It doesn't work at all, the app disappears right away.
 
 # Working Apps
+## [Amaha (Inner Hour)](https://play.google.com/store/apps/details?id=com.theinnerhour.b2b)
+### Static Analysis: 
+- Virus Total returns clean from all vendors
+- MobSF
+  -  returns a security score of 34: ![Alt text](images/image-3.png)
+  - AndroidManifest.xml, some lines are potentially concerning
+    - line 42: `android:usesCleartextTraffic="true" ` 
+    - a total of 14 elements have `android:exported="true`, some are theming elements, others were flagged as suspicious
+    ![Alt text](images/image-4.png)
+ - MobSF flags this element of the code: The App uses the encryption mode CBC with PKCS5/PKCS7 padding. Using `grep` on the decompiled code, I found the responsible [file](/decompiled-apps/amaha-code/qk/c.java) and code:
+
+  ```java
+  SecretKey secretKey = cVar.f29646i;
+  if (secretKey != null) {
+      Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+      cipher.init(2, secretKey, new IvParameterSpec(p10));
+      byte[] byteArray = cipher.doFinal(p11);
+      i.f(byteArray, "byteArray");
+      String str = new String(byteArray, gv.a.f16927b);
+      cVar.f29644g.remove(chatMessage);
+      chatMessage.setMessage(str);
+  } else {
+      i.q("keyStoreKey");
+      throw null;
+  }
+  ```
+  at least it shows that they do encrypt messages
+
+
 ## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app)
 ### Static Analysis: 
 - Virus total returns clean on every vendor
@@ -26,16 +55,15 @@
 ## [Breeze: Mental Health](https://play.google.com/store/apps/details?id=com.basenjiapps.breeze&hl=en&gl=US)
 ## [Moodfit](https://play.google.com/store/apps/details?id=com.robleridge.Moodfit&hl=en&gl=US)
 ## [BetterHelp](https://play.google.com/store/apps/details?id=com.betterhelp&hl=en&gl=US)
-## [Anima: AI Friend & Companion](https://anima-anima-tech-inc.en.aptoide.com/app)
 
 ### Static Analysis:
  gave a low score of 34 and found 3 trackers, this app had a high number of unprotected activites found during the manifest analysis, most related to the video feature. It also discloses IP addresses and has permission issues relating to bluetooth settings.
 ### Burp Suite:
  found that it calls almost exclusively to a website titled static.betterhelp.com which is presumably owned by the app developer given the shared name, although these calls include very high amounts of data being sent to this website which caused the data records to baloon to much larger sizes then the other apps.
 
+## [Anima: AI Friend & Companion](https://anima-anima-tech-inc.en.aptoide.com/app)
 
 ### General Observations
-## ???
 - It seems to process on the device as chatting generates no Burp traffic.
 - Interesting behavior: it completely refuses naughty talks instead of prompting you to pay like most apps.
 
