@@ -15,39 +15,81 @@
   - Reason: It doesn't work at all, the app disappears right away.
 
 # Working Apps
-## [Amaha (Inner Hour)](https://play.google.com/store/apps/details?id=com.theinnerhour.b2b)
+## [Amaha (Inner Hour)](https://play.google.com/store/apps/details?id=com.theinnerhour.b2b) - MH
 ### Static Analysis: 
 - Virus Total returns clean from all vendors
-- MobSF
+- MobSF 
   -  returns a security score of 34: ![Alt text](images/image-3.png)
+  - It has 7 trackers but they seem to be fairly standard, I've seen these before ![Alt text](images/image-5.png)
   - AndroidManifest.xml, some lines are potentially concerning
     - line 42: `android:usesCleartextTraffic="true" ` 
     - a total of 14 elements have `android:exported="true`, some are theming elements, others were flagged as suspicious
     ![Alt text](images/image-4.png)
- - MobSF flags this element of the code: The App uses the encryption mode CBC with PKCS5/PKCS7 padding. Using `grep` on the decompiled code, I found the responsible [file](/decompiled-apps/amaha-code/qk/c.java) and code:
+ - MobSF flags this element of the code: The App uses the encryption mode CBC with PKCS5/PKCS7 padding. Using `grep` on the decompiled code, I found the responsible [file](/decompiled-apps/amaha-code/qk/c.java) and code. The code is a function for handling messages so at least they appear to encrypt messages in thransit though with vulnerabilities. 
+ ```java
+    SecretKey secretKey = cVar.f29646i;
+    if (secretKey != null) {
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+        cipher.init(2, secretKey, new IvParameterSpec(p10));
+        byte[] byteArray = cipher.doFinal(p11);
+        i.f(byteArray, "byteArray");
+        String str = new String(byteArray, gv.a.f16927b);
+        cVar.f29644g.remove(chatMessage);
+        chatMessage.setMessage(str);
+    } else {
+        i.q("keyStoreKey");
+        throw null;
+    }
+   ```
 
+- Potential hardcoded secrets found by MobSF:
+  - In [com/theinnerhour/b2b/R.java](decompiled-apps/amaha-code/com/theinnerhour/b2b/R.java):
+    - `facebook_client_token` : `f7bfe92c82485f7c21250ab1130be4a2`
+      - found: `public static final int facebook_client_token = 0x7f140622;`
+    - `google_api_key` : `AIzaSyCxHzUlmB4Lt_sK710XZDh9lIgmvxFh3QU`
+      - found: `public static final int google_api_key = 0x7f1406a6;`
+    - `MIXPANEL_TOKEN` : `2c3f665efcaf962a258c3da5c8bafa22`
+      - found: `public static final int MIXPANEL_TOKEN = 0x7f14002c;`
+    - `google_crash_reporting_api_key` : `AIzaSyCxHzUlmB4Lt_sK710XZDh9lIgmvxFh3QU`
+      - found: `public static final int google_crash_reporting_api_key = 0x7f1406a8;`
+    - `com.google.firebase.crashlytics.mapping_file_id` : `91eed46f4d594043bab2819a11565c26`
+      - found: `public static final int res_0x7f1401e9_com_google_firebase_crashlytics_mapping_file_id = 0x7f1401e9;`
+
+  I found R.java by running `grep -r {fieldName}`. It appears that the hex values in R.java don't directly decode to the strings, which raises uncertainty about where MobSF obtained this value. I'm not sure what it is
+
+    - `firebase_database_url` : `https://gcpinnerhour.firebaseio.com`
+      - This URL redirected to a Google login page, which indicates that it's working as expected probably.
+  - In [w5/j.java](decompiled-apps/amaha-code/w5/j.java ): I found this file after running `grep -r` on hashes identified by MobSF. It contains an array of hashes and the code file leads me to believe they are SHA1: `if (is.u.Z1(hashSet, e0.u("SHA-1", byteArray)))`. I submitted a request for decryptions at [hashes.com](https://hashes.com/en/decrypt/hash) but who knows if they'll be decrypted. I have listed them below: 
+
+    - 8a3c4b262d721acd49a4bf97d5213199c86fa2b9
+    - cc2751449a350f668590264ed76692694a80308a
+    - a4b7452e2ed8f5f191058ca7bbfd26b0d3214bfc
+    - df6b721c8b4d3b6eb44c861d4415007e5a35fc95
+    - 9b8f518b086098de3d77736f9458a3d2f6f95a37
+    - 2438bce1ddb7bd026d5ff89f598b3b5e5bb824b3
+    - c56fb7d591ba6704df047fd98f535372fea00211
+  - Another set of hashes points me to [com/google/android/gms/internal/p000firebaseauthapi/bc.java](/decompiled-apps/amaha-code/com/google/android/gms/internal/p000firebaseauthapi/bc.java) where some ECC parameters seem to be hardcoded but I'm not sure if that's dangerous or not
+  - MobSF also identifies this hash which appears to be some default encryption key (dek) in [df/b.java](/decompiled-apps/amaha-code/df/b.java). This could be an exploit if you sent a packet without key and the app doesn't check signature or something but honestly I'm not sure what it means and the file is way too long and obfuscated to be read reasonably especiaylly jsut for a school project 
   ```java
-  SecretKey secretKey = cVar.f29646i;
-  if (secretKey != null) {
-      Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
-      cipher.init(2, secretKey, new IvParameterSpec(p10));
-      byte[] byteArray = cipher.doFinal(p11);
-      i.f(byteArray, "byteArray");
-      String str = new String(byteArray, gv.a.f16927b);
-      cVar.f29644g.remove(chatMessage);
-      chatMessage.setMessage(str);
-  } else {
-      i.q("keyStoreKey");
-      throw null;
-  }
+        HashSet O5 = kotlin.jvm.internal.h.O(jSONObject.optJSONArray("src_ext"), false);
+        String optString9 = jSONObject.optString("d_e_k", "28caa46a6e9c77fbe291287e4fec061f");
+        i.f(optString9, "configJson.optString(\n  …RYPTION_KEY\n            )");
   ```
-  at least it shows that they do encrypt messages
+### Dynamic Analysis
+- MobSF: First it kept crashing so this may be not entirely accurate but it is what it is
+  - Suspected Anti-VM code: MobSF flags this but a quick look with `grep` doesn't return any files where they check for Virtualbox or Genymotion or whatever but I didnt check thoroughly and I also dont know what specifically to loook for. but i did see some checks for samsung, amazon xiaomi and huawei, not vm checks
+  ![Alt text](images/image6.png)
+  - It is also revealed that all the main APIs go to India. The ones going to the EU and US are either stuff like Google, Facebook, Apple or standard analytics like the 7 trackers identified. This could be a concern considering the laws in india regarding privacy. This is further compounded by the fact that when the app sends data to the indian api and identifies users by `uid = email`
+  ![Alt text](images/image7.png)
+  - In the [firebaseio](data/data/com.theinnerhour.b2b/databases/gcpinnerhour.firebaseio.com_default&hash=4f1ee70e900c25d0954e36b48f88472e&type=db) file, the app sends mental health data to firebase, an example below. I'm not sure that's entirely legal to put it nicely.
+  ![Alt text](images/image8.png)
 
-
-## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app)
+## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app) - MH
 ### Static Analysis: 
 - Virus total returns clean on every vendor
-## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app)
+## [EVA AI](https://play.google.com/store/apps/details?id=com.ifriend.app) - MH
+### Static Analysis:
+- VirusTotal returns clean from all vendors
 ## [iGirl](https://play.google.com/store/apps/details?id=ai.girlfriend.virtual.dating.lover.igirl)
 ## [HER ai](https://play.google.com/store/apps/details?id=com.herchatgpt.herchatgpt)
 ## [Audyn AI](https://play.google.com/store/apps/details?id=com.cognital.audyn&hl=en&gl=US)
@@ -87,7 +129,7 @@
 ## Wysa
 - This app could only be tested via static analysis, it gave a score of 42 and found 3 trackers, its calls are qite standard overall having many of the same common issues as the other apps but to a slightly lesser degree.
 
-## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid)
+## [SuperBetter](https://play.google.com/store/apps/details?id=com.superbetter.paid) - MH, KEZ
 
 
 ### VirusTotal
@@ -115,7 +157,7 @@
 ## MobSF 
 
 - **Documentation**: [MobSF Docs](https://mobsf.github.io/docs/#/)
-- **MobSF Instructions with Docker (Minh)**:
+- **MobSF Instructions with Docker (MH)**:
   1. Install Docker `winget/brew/apt install docker`
   2. Verify Docker with `docker --version`.
   3. Run `docker pull opensecurity/mobile-security-framework-mobsf:latest` to create a container.
