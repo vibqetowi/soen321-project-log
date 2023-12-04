@@ -1,0 +1,91 @@
+package com.ifriend.presentation.features.chatstore.viewmodel;
+
+import com.ifriend.analytics.usecase.purchase.PurchaseSource;
+import com.ifriend.presentation.common.observers.appevents.AppEvents;
+import com.ifriend.presentation.common.observers.appevents.AppEventsEmitter;
+import com.ifriend.presentation.common.observers.appevents.params.BuyNeuronsBillingUiParams;
+import com.ifriend.presentation.common.observers.purchases.PaymentResultFlow;
+import com.ifriend.presentation.features.chatstore.models.ChatStoreUi;
+import java.util.UUID;
+import kotlin.Metadata;
+import kotlin.ResultKt;
+import kotlin.Unit;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.intrinsics.IntrinsicsKt;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+import kotlin.coroutines.jvm.internal.SuspendLambda;
+import kotlin.jvm.functions.Function2;
+import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.CoroutineScope;
+import kotlinx.coroutines.flow.Flow;
+import kotlinx.coroutines.flow.FlowCollector;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* compiled from: ChatsStoreViewModel.kt */
+@Metadata(d1 = {"\u0000\n\n\u0002\u0018\u0002\n\u0002\u0010\u0002\n\u0000\u0010\u0002\u001a\u00020\u0001*\u00020\u0000H\u008a@"}, d2 = {"Lkotlinx/coroutines/CoroutineScope;", "", "<anonymous>"}, k = 3, mv = {1, 9, 0})
+@DebugMetadata(c = "com.ifriend.presentation.features.chatstore.viewmodel.ChatsStoreViewModel$buyChatAfterBuyNeurons$2", f = "ChatsStoreViewModel.kt", i = {}, l = {157}, m = "invokeSuspend", n = {}, s = {})
+/* loaded from: classes6.dex */
+public final class ChatsStoreViewModel$buyChatAfterBuyNeurons$2 extends SuspendLambda implements Function2<CoroutineScope, Continuation<? super Unit>, Object> {
+    final /* synthetic */ ChatStoreUi $chat;
+    int label;
+    final /* synthetic */ ChatsStoreViewModel this$0;
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public ChatsStoreViewModel$buyChatAfterBuyNeurons$2(ChatsStoreViewModel chatsStoreViewModel, ChatStoreUi chatStoreUi, Continuation<? super ChatsStoreViewModel$buyChatAfterBuyNeurons$2> continuation) {
+        super(2, continuation);
+        this.this$0 = chatsStoreViewModel;
+        this.$chat = chatStoreUi;
+    }
+
+    @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+    public final Continuation<Unit> create(Object obj, Continuation<?> continuation) {
+        return new ChatsStoreViewModel$buyChatAfterBuyNeurons$2(this.this$0, this.$chat, continuation);
+    }
+
+    @Override // kotlin.jvm.functions.Function2
+    public final Object invoke(CoroutineScope coroutineScope, Continuation<? super Unit> continuation) {
+        return ((ChatsStoreViewModel$buyChatAfterBuyNeurons$2) create(coroutineScope, continuation)).invokeSuspend(Unit.INSTANCE);
+    }
+
+    @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+    public final Object invokeSuspend(Object obj) {
+        AppEventsEmitter appEventsEmitter;
+        PaymentResultFlow paymentResultFlow;
+        Object coroutine_suspended = IntrinsicsKt.getCOROUTINE_SUSPENDED();
+        int i = this.label;
+        if (i == 0) {
+            ResultKt.throwOnFailure(obj);
+            UUID randomUUID = UUID.randomUUID();
+            PurchaseSource purchaseSource = PurchaseSource.CHATLIST;
+            Intrinsics.checkNotNull(randomUUID);
+            BuyNeuronsBillingUiParams buyNeuronsBillingUiParams = new BuyNeuronsBillingUiParams(false, null, purchaseSource, randomUUID, 3, null);
+            appEventsEmitter = this.this$0.appEventsEmitter;
+            appEventsEmitter.emit(new AppEvents.Billing.BuyNeurons(buyNeuronsBillingUiParams));
+            paymentResultFlow = this.this$0.paymentResultFlow;
+            Flow<Boolean> paymentResultFlow2 = paymentResultFlow.getPaymentResultFlow(randomUUID);
+            final ChatsStoreViewModel chatsStoreViewModel = this.this$0;
+            final ChatStoreUi chatStoreUi = this.$chat;
+            this.label = 1;
+            if (paymentResultFlow2.collect(new FlowCollector<Boolean>() { // from class: com.ifriend.presentation.features.chatstore.viewmodel.ChatsStoreViewModel$buyChatAfterBuyNeurons$2.1
+                @Override // kotlinx.coroutines.flow.FlowCollector
+                public /* bridge */ /* synthetic */ Object emit(Boolean bool, Continuation continuation) {
+                    return emit(bool.booleanValue(), continuation);
+                }
+
+                public final Object emit(boolean z, Continuation<? super Unit> continuation) {
+                    if (z) {
+                        ChatsStoreViewModel.this.buyChat(chatStoreUi);
+                    }
+                    return Unit.INSTANCE;
+                }
+            }, this) == coroutine_suspended) {
+                return coroutine_suspended;
+            }
+        } else if (i != 1) {
+            throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+        } else {
+            ResultKt.throwOnFailure(obj);
+        }
+        return Unit.INSTANCE;
+    }
+}

@@ -19,8 +19,8 @@
 ### Static Analysis: 
 - Virus Total returns clean from all vendors
 - MobSF 
-  -  returns a security score of 34: ![Alt text](images/image-3.png)
-  - It has 7 trackers but they seem to be fairly standard, I've seen these before ![Alt text](images/image-5.png)
+  -  returns a security score of 34 which is on the low end: ![Alt text](images/image-3.png)
+  - It has 7 trackers but they seem to be fairly standard. There may be privacy concerns but the vendors seem fairly ubiquitous
   - AndroidManifest.xml, some lines are potentially concerning
     - line 42: `android:usesCleartextTraffic="true" ` 
     - a total of 14 elements have `android:exported="true`, some are theming elements, others were flagged as suspicious
@@ -77,12 +77,13 @@
   ```
 ### Dynamic Analysis
 - MobSF: First it kept crashing so this may be not entirely accurate but it is what it is
+  - TLS testing failed 2/4 tests ![Alt text](images/image9.png)
   - Suspected Anti-VM code: MobSF flags this but a quick look with `grep` doesn't return any files where they check for Virtualbox or Genymotion or whatever but I didnt check thoroughly and I also dont know what specifically to loook for. but i did see some checks for samsung, amazon xiaomi and huawei, not vm checks
-  ![Alt text](images/image6.png)
   - It is also revealed that all the main APIs go to India. The ones going to the EU and US are either stuff like Google, Facebook, Apple or standard analytics like the 7 trackers identified. This could be a concern considering the laws in india regarding privacy. This is further compounded by the fact that when the app sends data to the indian api and identifies users by `uid = email`
   ![Alt text](images/image7.png)
   - In the [firebaseio](data/data/com.theinnerhour.b2b/databases/gcpinnerhour.firebaseio.com_default&hash=4f1ee70e900c25d0954e36b48f88472e&type=db) file, the app sends mental health data to firebase, an example below. I'm not sure that's entirely legal to put it nicely.
   ![Alt text](images/image8.png)
+  - The dynamic analyzer returned a list of emails. I grep them all but interstingly only support@amahahealth.com appears in the code. The rest only exist after i ran it. I dont know what it means, but here;s the command: `grep -r -e '214515028@21.45' -e 'support@amahahealth.com' -e 'hr@amahahealth.com' -e 'info@childrenfirstindia.com' -e 'ravi.test123@gmail.com' -e 'xa6bl@d._j1' -e 'xeb@d.qa' -e 'x96@zc.dm' -e 'xc0h@a.9olh' -e 'xabh@rzncru.b9b' -e 'xdb@6.4f' -e 'x80@qr.bu' -e 'xa3@y.ccw' .  `
 
 ## [Replika AI](https://play.google.com/store/apps/details?id=ai.replika.app) - MH
 ### Static Analysis: 

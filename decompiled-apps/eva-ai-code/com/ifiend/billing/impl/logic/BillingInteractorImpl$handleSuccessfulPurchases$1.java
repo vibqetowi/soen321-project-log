@@ -1,0 +1,35 @@
+package com.ifiend.billing.impl.logic;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import kotlin.Metadata;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* compiled from: BillingInteractorImpl.kt */
+@Metadata(k = 3, mv = {1, 9, 0}, xi = 48)
+@DebugMetadata(c = "com.ifiend.billing.impl.logic.BillingInteractorImpl", f = "BillingInteractorImpl.kt", i = {0, 0, 1}, l = {ConstraintLayout.LayoutParams.Table.LAYOUT_WRAP_BEHAVIOR_IN_PARENT, ConstraintLayout.LayoutParams.Table.GUIDELINE_USE_RTL}, m = "handleSuccessfulPurchases", n = {"this", "purchasesConfirmation", "purchasesConfirmation"}, s = {"L$0", "L$1", "L$0"})
+/* loaded from: classes6.dex */
+public final class BillingInteractorImpl$handleSuccessfulPurchases$1 extends ContinuationImpl {
+    Object L$0;
+    Object L$1;
+    int label;
+    /* synthetic */ Object result;
+    final /* synthetic */ BillingInteractorImpl this$0;
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public BillingInteractorImpl$handleSuccessfulPurchases$1(BillingInteractorImpl billingInteractorImpl, Continuation<? super BillingInteractorImpl$handleSuccessfulPurchases$1> continuation) {
+        super(continuation);
+        this.this$0 = billingInteractorImpl;
+    }
+
+    @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+    public final Object invokeSuspend(Object obj) {
+        Object handleSuccessfulPurchases;
+        this.result = obj;
+        this.label |= Integer.MIN_VALUE;
+        handleSuccessfulPurchases = this.this$0.handleSuccessfulPurchases(null, this);
+        return handleSuccessfulPurchases;
+    }
+}

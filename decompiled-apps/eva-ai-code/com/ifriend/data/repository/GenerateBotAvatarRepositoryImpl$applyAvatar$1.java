@@ -1,0 +1,34 @@
+package com.ifriend.data.repository;
+
+import kotlin.Metadata;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.jvm.internal.ContinuationImpl;
+import kotlin.coroutines.jvm.internal.DebugMetadata;
+/* JADX INFO: Access modifiers changed from: package-private */
+/* compiled from: GenerateBotAvatarRepositoryImpl.kt */
+@Metadata(k = 3, mv = {1, 9, 0}, xi = 48)
+@DebugMetadata(c = "com.ifriend.data.repository.GenerateBotAvatarRepositoryImpl", f = "GenerateBotAvatarRepositoryImpl.kt", i = {0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 6}, l = {208, 209, 213, 210, 216, 217, 223, 224}, m = "applyAvatar", n = {"this", "id", "this", "id", "this", "id", "this", "id", "this", "id", "this", "this"}, s = {"L$0", "L$1", "L$0", "L$1", "L$0", "L$1", "L$0", "L$1", "L$0", "L$1", "L$0", "L$0"})
+/* loaded from: classes6.dex */
+public final class GenerateBotAvatarRepositoryImpl$applyAvatar$1 extends ContinuationImpl {
+    Object L$0;
+    Object L$1;
+    Object L$2;
+    Object L$3;
+    int label;
+    /* synthetic */ Object result;
+    final /* synthetic */ GenerateBotAvatarRepositoryImpl this$0;
+
+    /* JADX INFO: Access modifiers changed from: package-private */
+    /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
+    public GenerateBotAvatarRepositoryImpl$applyAvatar$1(GenerateBotAvatarRepositoryImpl generateBotAvatarRepositoryImpl, Continuation<? super GenerateBotAvatarRepositoryImpl$applyAvatar$1> continuation) {
+        super(continuation);
+        this.this$0 = generateBotAvatarRepositoryImpl;
+    }
+
+    @Override // kotlin.coroutines.jvm.internal.BaseContinuationImpl
+    public final Object invokeSuspend(Object obj) {
+        this.result = obj;
+        this.label |= Integer.MIN_VALUE;
+        return this.this$0.applyAvatar(null, this);
+    }
+}
