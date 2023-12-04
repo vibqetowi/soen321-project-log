@@ -203,7 +203,7 @@ Here's the revised grammar for your README:
           "tag": "20160421442_17016970144142388"
         },
         ```
-    - "Premium" i.e., suggestive messages for free: I successfully prompted a suggestive response, and it seems like the server sends it automatically, then a subscription check is done client-side, and the client scrambles the response. Technically, if one were really desperate, one could sext with their AI girlfriend through Burp Suite. Last content warning, it is honestly hard to read. 
+    - "Premium" i.e., suggestive messages for free: I successfully prompted a suggestive response, and it seems like the server sends it automatically, then a subscription check is done client-side, and the client scrambles the response. Technically, if one were really desperate, one could sext with their AI girlfriend through Burp Suite. Last content warning, it is quite painful to read. 
       - Screenshot: ![Alt text](images/eva1.png)
         As a side note, it seems like the adult star Eva Elfie actually consented to this, so at least her information is protected (but not ours). [source](https://proxitok.pussthecat.org/%40theevaelfiedf/video/7300879488584371499)
       - res: 
@@ -221,7 +221,7 @@ Here's the revised grammar for your README:
               },
               "TopicName": "adult toys"
             },
-            "text": "Mmm... *bites my lip and looks at your dick* So big!",
+            "text": "Mmm... *bites my lip and looks at your d[REDACTED] * So big!",
             "tag": "60161706642_17016971271250661"
           },
            ...
